@@ -1,0 +1,12 @@
+#host{
+    width: 90px;
+    height: 50px;
+  }
+  #control{
+    position: relative;
+  }
+  #popup{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+  }

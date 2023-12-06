@@ -1,0 +1,205 @@
+
+ 
+   
+
+
+   
+<!-- 
+    <div >
+      <label>First Name</label>
+      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && formControl.get('email').errors" class="invalid-feedback">
+          <div *ngIf="['f.email'].error();.required">First Name is required</div>
+      </div>
+  </div> -->
+
+
+<!-- 
+  <form [formGroup]="addForm" class="fm" >
+
+
+    <div class="form-group col-5">
+      <label>First Name</label>
+      <input type="text" formControlName="user_Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.get('user_Name')?.errors}" />
+      <div *ngIf="submitted && addForm.get('user_Name')?.errors" class="invalid-feedback">
+          <div *ngIf="addForm.get('user_Name')?.errors.required">First Name is required</div>
+      </div>
+  </div>
+
+  <mat-form-field  appearance="fill" >
+    <mat-label>user_Name:</mat-label>
+    <input type="text" style="font-size: 18px;" matInput formControlName="user_Name" >
+    
+</mat-form-field>
+<div *ngIf="addForm.controls['user_Name'].invalid && (addForm.controls['user_Name'].dirty || addForm.controls['user_Name'].touched)" class="alert alert-danger">
+  <div *ngIf="addForm.controls['user_Name'].errors">
+  Name is required.
+</div></div>
+
+
+<mat-form-field class="row" appearance="fill" >
+  <mat-label>email:</mat-label>
+  <input type="email" matInput formControlName="email" 
+  >
+</mat-form-field> 
+  <div *ngIf="addForm.controls['email'].invalid && (addForm.controls['email'].dirty || addForm.controls['email'].touched)" class="alert alert-danger">
+    <div *ngIf="addForm.controls['email'].errors">
+    Name is required.
+  </div></div>
+
+
+ 
+
+  
+<mat-form-field class="row" appearance="fill" floatLabel="always">
+  <mat-label>password:</mat-label>
+  <input type="password" matInput formControlName="password"   >
+   
+</mat-form-field>
+
+<div *ngIf="addForm.controls['password'].invalid && (addForm.controls['password'].dirty || addForm.controls['password'].touched)" class="alert alert-danger">
+  <div *ngIf="addForm.controls['password'].errors">
+  Name is required.
+</div></div>
+
+<mat-form-field class="row" appearance="fill" floatLabel="always">
+  <mat-label>phone:</mat-label>
+  <input type="tel" matInput formControlName="phone" >
+  
+</mat-form-field>
+<div *ngIf="addForm.controls['phone'].invalid && (addForm.controls['phone'].dirty || addForm.controls['phone'].touched)" class="alert alert-danger">
+  <div *ngIf="addForm.controls['phone'].errors">
+  Name is required.
+</div></div>
+<mat-form-field class="row" appearance="fill" floatLabel="always">
+  <mat-label>gender:</mat-label>
+  <input type="tel" matInput formControlName="gender" >
+  
+</mat-form-field>
+<div *ngIf="addForm.controls['gender'].invalid && (addForm.controls['gender'].dirty || addForm.controls['gender'].touched)" class="alert alert-danger">
+  <div *ngIf="addForm.controls['gender'].errors">
+  Name is required.
+</div></div>
+ 
+
+  <button type="button"   [disabled]="!addForm.valid" (click)="add()">add</button>
+
+
+
+
+</form>
+ -->
+ <p style="top: 15px; padding-top:30px ; padding-left:125px ;font-size: 25px ;" >Register</p>
+ <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <div   class="form-group">
+    <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Name :</label>
+    <input style="width: 70%;margin-top: -0px; padding-bottom: -10px;height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+      type="text"
+      formControlName="user_Name"
+      class="is"
+      name="user_Name"
+      placeholder="Type your name"
+    />
+    <small
+      *ngIf="addForm.controls['user_Name'].invalid && (addForm.controls['user_Name'].dirty || addForm.controls['user_Name'].touched)"
+      class="block p-error"
+    >
+      <div *ngIf="addForm.controls['user_Name'].errors?.['required']" class="err">Name is required.</div>
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="user_Name" style="margin-left: 55px; margin-bottom:0px;   padding-bottom: 0;">Email :</label>
+    <input style="width: 70%;margin-top: -0px; height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+      type="text"
+      formControlName="email"
+      class="w-full"
+      name="email"
+      placeholder="Type your email"
+    />
+    <small
+      *ngIf="addForm.controls['email'].invalid && (addForm.controls['email'].dirty || addForm.controls['email'].touched)"
+      class="block p-error"
+    >
+      <div *ngIf="addForm.controls['email'].errors?.['required']" class="err">Email is required.</div>
+      <div *ngIf="addForm.controls['email'].errors?.['email']" class="err">Email should be valid</div>
+    </small>
+  </div>
+
+
+  <div  class="form-group">
+    <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Password :</label>
+    <input style="width: 70%;margin-top: 0px; height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+      type="password"
+      formControlName="password"
+      class="w-full"
+      name="password"
+      placeholder="Type your password"
+    />
+    <small
+      *ngIf="addForm.controls['password'].invalid && (addForm.controls['password'].dirty || addForm.controls['password'].touched)"
+      class="block p-error"
+    >
+      <div *ngIf="addForm.controls['password'].errors?.['required']" class="err">password is required.</div>
+      <div *ngIf="addForm.controls['password'].errors?.['password']" class="err"> password must be at least 8 characters in length</div>
+    </small>
+  </div>
+
+
+  <div  class="form-group">
+    <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Phone number :</label>
+    <input style="width: 70%;margin-top: 0px; height: 35px; border-radius:5px ; display: block;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+      type="tel"
+      formControlName="phone"
+      class="w-full"
+      name="phone"
+      placeholder="Type your phone"
+    />
+    <small
+      *ngIf="addForm.controls['phone'].invalid && (addForm.controls['phone'].dirty || addForm.controls['phone'].touched)"
+      class="block p-error"
+    >
+      <div *ngIf="addForm.controls['phone'].errors?.['required']" class="err">phone number is required.</div>
+      <div *ngIf="addForm.controls['phone'].errors?.['phone']" class="err">enter a valid phone number</div>
+    </small>
+  </div>
+
+
+<!-- 
+  
+  <div class="form-group">
+    <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Gender :</label>
+    <input
+      type="text"
+      formControlName="gender"
+      class="form-group"
+      name="gender"
+      placeholder="Type your gender"
+    />
+    <small
+      *ngIf="addForm.controls['gender'].invalid && (addForm.controls['gender'].dirty || addForm.controls['gender'].touched)"
+      class="block p-error"
+    >
+      <div *ngIf="addForm.controls['gender'].errors?.['required']" class="err">Email is required.</div>
+      <div *ngIf="addForm.controls['gender'].errors?.['gender']" class="err"></div>
+    </small>
+  </div> -->
+<div class="form-group" style="margin-left: 55px;" >
+  <label> Gender</label><br>
+    <label class="radio-inline">
+    <input type="radio" name="gender" value="male"  formControlName="gender"  [(ngModel)]="contact.gender">
+    Male
+    </label>
+    <label class="radio-inline">
+    <input type="radio"  formControlName="gender"  value="female" [(ngModel)]="contact.gender">
+    Female
+    </label>
+  </div>
+   
+    
+
+  <!-- Repeat similar blocks for other form controls -->
+
+  <button type="submit" (click)="add()" style="width: 65%;height: 35px;border: none;outline: none;margin-left: 60px;font-size: 18px;background: #222;color: #f5f5f5;border-radius: 6px;cursor: pointer;">Register</button>
+  <div class="mt-2" style="margin-left: 80px">Already a member? <a routerLink="/login">Login</a></div>
+</form>

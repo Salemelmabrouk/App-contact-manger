@@ -1,0 +1,107 @@
+
+<p style="top: 15px; padding-top:30px ; padding-left:125px ;font-size: 25px ;" >View</p>
+<form [formGroup]="updateForm">
+ <div   class="form-group">
+   <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Name :</label>
+   <input  readonly style="width: 70%;margin-top: -0px; padding-bottom: -10px;height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+     type="text"
+     formControlName="user_Name"
+     class="is"
+     name="user_Name"
+     placeholder="Type your name"
+   />
+   <small
+     *ngIf="updateForm.controls['user_Name'].invalid && (updateForm.controls['user_Name'].dirty || updateForm.controls['user_Name'].touched)"
+     class="block p-error"
+   >
+     <div *ngIf="updateForm.controls['user_Name'].errors?.['required']" class="err">Name is required.</div>
+   </small>
+ </div>
+
+ <div class="field">
+   <label for="user_Name" style="margin-left: 55px; margin-bottom:0px;   padding-bottom: 0;">Email :</label>
+   <input readonly style="width: 70%;margin-top: -0px; height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+     type="text"
+     formControlName="email"
+     class="w-full"
+     name="email"
+     placeholder="Type your email"
+   />
+   <small
+     *ngIf="updateForm.controls['email'].invalid && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched)"
+     class="block p-error"
+   >
+     <div *ngIf="updateForm.controls['email'].errors?.['required']" class="err">Email is required.</div>
+     <div *ngIf="updateForm.controls['email'].errors?.['email']" class="err">Email should be valid</div>
+   </small>
+ </div>
+
+
+ <div  class="form-group">
+   <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Password :</label>
+   <input readonly style="width: 70%;margin-top: 0px; height: 35px; border-radius:5px ; display: block; text-align:left;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+     type="password"
+     formControlName="password"
+     class="w-full"
+     name="password"
+     placeholder="Type your password"
+   />
+   <small
+     *ngIf="updateForm.controls['password'].invalid && (updateForm.controls['password'].dirty || updateForm.controls['password'].touched)"
+     class="block p-error"
+   >
+     <div *ngIf="updateForm.controls['password'].errors?.['required']" class="err">password is required.</div>
+     <div *ngIf="updateForm.controls['password'].errors?.['password']" class="err"> password must be at least 8 characters in length</div>
+   </small>
+ </div>
+
+
+ <div  class="form-group">
+   <label for="user_Name" style="margin-left: 55px; margin-bottom:0px; padding-bottom: 0;">Phone number :</label>
+   <input  readonly style="width: 70%;margin-top: 0px; height: 35px; border-radius:5px ; display: block;  padding-left: 55px; margin-left: 55px; outline: none; border: solid thin #aaa;"
+     type="tel"
+     formControlName="phone"
+     class="w-full"
+     name="phone"
+     placeholder="Type your phone" 
+   />
+   <small
+     *ngIf="updateForm.controls['phone'].invalid && (updateForm.controls['phone'].dirty || updateForm.controls['phone'].touched)"
+     class="block p-error"
+   >
+     <div *ngIf="updateForm.controls['phone'].errors?.['required']" class="err">phone number is required.</div>
+     <div *ngIf="updateForm.controls['phone'].errors?.['phone']" class="err">enter a valid phone number</div>
+   </small>
+ </div>
+
+
+
+<!--  
+ <div disabled  class="form-group">
+
+  <div disabled class="form-group" style="margin-left: 55px;" >
+   <label> Gender : </label><br>
+     <label class="radio-inline">
+     <input readonly type="radio" name="gender" value="male"  formControlName="gender"  [(ngModel)]="data.gender">
+     Male
+     </label>
+     <label class="radio-inline">
+     <input   type="radio"  formControlName="gender"  value="female"   [(ngModel)]="data.gender">
+     Female
+     </label>
+   </div>
+ </div> -->
+
+
+ <label> Gender : </label><br>
+ <mat-radio-group disabled style="margin-left: 60px;">
+  <mat-radio-button  formControlName="gender"  [(ngModel)]="data.gender">Male</mat-radio-button>
+  <mat-radio-button formControlName="gender"  [(ngModel)]="data.gender">Female</mat-radio-button>
+ 
+</mat-radio-group>
+
+ <!-- Repeat similar blocks for other form controls -->
+
+ <button type="submit" (click)="onNoClick()" style="width: 65%;height: 35px;border: none;outline: none;margin-left: 60px;font-size: 18px;background: #222;color: #f5f5f5;border-radius: 6px;cursor: pointer;">Ok</button>
+ <div class="mt-2" style="margin-left: 80px">Already a member? <a routerLink="/login">Login</a></div>
+</form>
