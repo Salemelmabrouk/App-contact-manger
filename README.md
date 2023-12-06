@@ -18,7 +18,7 @@ This is a simple Crud application for mangement contact  built with Angular and 
 
 **1. Clone the repository:**
 ```shell
-git clone https://github.com/sinnedpenguin/angular-springboot-ecommerce
+git clone https://github.com/Salemelmabrouk/App-contact-manger.git
 ```
 
 ### Angular Frontend
