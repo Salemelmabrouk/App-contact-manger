@@ -3,7 +3,7 @@ import { AddcontactComponent } from './Components/addcontact/addcontact.componen
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ContactService } from './Components/contact.service';
 import { contact } from 'src/app/contact';
-
+import { ContactlistComponent } from './Components/contactlist/contactlist.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -34,24 +34,26 @@ public add(element:any): void {
      const dialogRef = this.dialog.open(AddcontactComponent, {
       height: '520px',
       width: '360px',
-       data: element // Pass the contact data to the dialog
+       data: element 
      });
  
      dialogRef.afterClosed().subscribe(
-       (result) => {
-         if (result === true) {
+      
+        (result) => {
+          if (result === true) {
           
-         }
-       },
-       (error) => {
-         console.error('Error updating contact', error);
-         // Handle the error, show an error message, etc.
-       }
-     );
-   }
- }
+          }
+      
+       
+        },
+        (error) => {
+          console.error('Error updating contact', error);
+    
+        }
+      );
+ }}
 ngOnInit(){
- 
+
 
 }
 onSubmit(){

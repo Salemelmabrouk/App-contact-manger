@@ -59,6 +59,9 @@ submitted = false;
       this.data = res;
       console.log(this.data);
       console.log('User Registered successfully!!');
+      this.getContactList();
+      this.onReset()
+
     },
     (error) => {
       console.error('Error adding contact', error);
@@ -74,12 +77,11 @@ submitted = false;
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
+ 
     if (this.addForm.invalid) {
         return;
     }
 
-    // display form values on success
 
 }
 

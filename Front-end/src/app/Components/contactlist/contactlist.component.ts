@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,ViewEncapsulation } from '@angular/core';
 import { contact } from 'src/app/contact';
 import { ContactService } from '../contact.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,22 +13,24 @@ import { ViewComponent } from '../view/view.component';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, ToastNotificationInitializer } from '@costlydeveloper/ngx-awesome-popup';
 import { ConfirmBoxInitializer} from '@costlydeveloper/ngx-awesome-popup';
 import { Injectable } from '@angular/core';
-
+import { SortEvent } from 'primeng/api';
 @Component({
   selector: 'app-contactlist',
   templateUrl: './contactlist.component.html',
-  styleUrls: ['./contactlist.component.css']
+  styleUrls: ['./contactlist.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class ContactlistComponent implements OnInit {
 
-  
-  dataSource!: MatTableDataSource<contact>;
+  dataSource!: any ;
+
   dataArray: any;
   contacts!: contact[];
   displayedColumns: string[] = ['id', 'user_Name', 'email', 'password', 'phone', 'gender', 'action'];
   @ViewChild(MatPaginator) paginatior!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort;
-
+  @ViewChild(MatPaginator, { static: true })
+  paginator!: MatPaginator;
   value = 'Clear me';
 
   contact: contact = new contact;
@@ -41,12 +43,14 @@ export class ContactlistComponent implements OnInit {
   id?: number;
   error: any;
   inputValue: string | undefined;
+element: any;
 
 
   constructor(private contactService: ContactService, private dialog: MatDialog, ) { }
 
   ngOnInit(): void {
     this.getContactList();
+    this.dataSource.paginator = this.paginator;
 
   
   }
@@ -61,78 +65,22 @@ export class ContactlistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (result) => {
         if (result === true) {
-   
-        }
-      },
+          this.getContactList();
+        } this.getContactList();
+      }, 
       (error) => {
         console.error('Error updating contact', error);
     
-      }
+      } 
     );
-    this.getContactList();
+   
   }
 
   clearInput() {
     this.inputValue ='';
   }
 
-/*
 
-  delete(id:number) {
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      height: '150px',
-      width: '450px',
-    });
-  
-    dialogRef.afterClosed().subscribe(
-      (result) => {
-        if (result === true) {
-          this.getContactList();
-        }
-      },
-      (error) => {
-        console.error('Error updating contact', error);
-       
-      }
-    );
-    this.getContactList();
-  }
-
-
-
-
-  del(id:number) {
-
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      height: '200px',
-      width: '450px',
-      data:{
-        message: 'Are you sure want to delete?',
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No'
-        }
-      },
-      
-    }); 
-  
-
-    
-    dialogRef.afterClosed().subscribe(
-      (result) => {
-        if (result === true) {
-          this.delete(id);
-        }
-      },
-      (error) => {
-        console.error('Error updating contact', error);
-       
-      }
-    );
-    this.getContactList();
-  }
-*/
- 
 
 
   
@@ -155,7 +103,7 @@ export class ContactlistComponent implements OnInit {
     );
   }
 
- public delete(id: number) {
+ public delete(id: any) {
    if (confirm("Are you sure you want to delete this user?")) {
       this.contactService.delete(id).subscribe(
         res => {
@@ -167,36 +115,12 @@ export class ContactlistComponent implements OnInit {
         }
       );
     }
-  }  
-/*   public update(id: any) {
- 
-      this.contactService.update(id).subscribe(
-        next: (res) => {
-this.dialog.reset();
-         this.dialog.closeAll;
-          this.getContactList();
-        },
-        error => {
-          console.error('Error deleting contact', error);
-        }
-      );
-    }
+  }  getRowHeight(row: any, index: number): number {
+    // You can set a fixed height or calculate it based on row content, for example:
+    // return row.someProperty ? 30 : 20; // Set different heights based on row content
+    return 10; // Set a fixed height (adjust this value as needed)
+  }
 
-
-    
-
-    public delete(id: number) {
-      this.contactService.delete(id).subscribe(
-        () => {
-          console.log('Contact deleted successfully.');
-          this.getContactList(); // Refresh the contact list or perform any necessary actions.
-        },
-        error => {
-          console.error('Error deleting contact', error);
-        }
-      );
-    
-    } */
 
  public update(element:any): void {
      { 
@@ -208,9 +132,9 @@ this.dialog.reset();
     
         dialogRef.afterClosed().subscribe(
           (result) => {
-            if (result === true) {
+            if (result === true) { this.getContactList();
        
-            }
+            }  this.getContactList();
           },
           (error) => {
             console.error('Error updating contact', error);
@@ -218,7 +142,7 @@ this.dialog.reset();
           }
         );
       }
-      this.getContactList();
+    
       
         
        
@@ -270,17 +194,22 @@ this.dialog.reset();
     this.getContactList();   
   } 
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
 
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
   }
 
-  Sortchange(sort: Sort) {
-    if (sort.direction) {
+  Sortchange(event: SortEvent) {
+    if (event.multiSortMeta) {
       this.dataSource.sort = this.sort;
+      console.log('Sorting event:', event);
     }
   }
+
+
+
 }
-
-

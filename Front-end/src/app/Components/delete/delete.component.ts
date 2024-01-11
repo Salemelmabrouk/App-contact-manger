@@ -23,33 +23,6 @@ constructor(
 ) {}
 
 
-/* delete(id: number) {
-    this.confirmService.showConfirm("Are you sure want to Delete? contact with id: ${id}",
-     () => {
-     
-        if (confirm("Are you sure you want to delete this user?")) {
-          this.contactService.delete(id).subscribe(
-            res => {
-              console.log(res);
-             
-            },
-            error => {
-              console.error('Error deleting contact', error);
-            }
-          );
-        }
- 
-      
-    },
-    () => {
-      this.dialog.closeAll();
-    })
-  }*/
-
-  public logData() {
-    console.log('Data:', this.data);
-  }
-
 public delete(id: number) {
 
   if (confirm("Are you sure you want to delete this user?")) 
@@ -71,41 +44,6 @@ public delete(id: number) {
   
   }
  
-
-
-
-/* 
-  delete(): void {
-    if (this.data && this.data.id) {
-      console.log(`Deleting contact with id: ${this.data.id}`);
-      this.contactService.delete(this.data).subscribe(
-        () => {
-          console.log('Contact deleted successfully.');
-    
-        },
-        error => {
-          console.error('Error deleting contact', error);
-        }
-      );
-    } else {
-      console.error('Invalid data or missing id for deletion');
-    }
-  } */
-
-/* 
-  public delete(id: number) {
-     {
-      this.contactService.delete(id).subscribe(
-        res => {
-          console.log(res);
-        
-        },
-        error => {
-          console.error('Error deleting contact', error);
-        }
-      );
-    }
-  } */
 
 }
   

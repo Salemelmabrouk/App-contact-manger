@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { contact } from '../contact';
 
@@ -32,7 +32,15 @@ export class ContactService {
      get(id:number,contact:any): Observable<any> {     
       return this.httpClient.get<contact>(`${this.baseURL}/get`+'/'+ id ,contact);  } 
 
+      
+
+      getPaginatedContacts(page: number, size: number): Observable<contact[]> {
+        const params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+        return this.httpClient.get<contact[]>(`${this.baseURL}/contacts/paginated`, { params });
+      }
+    }
 
 
-}
+
+
 

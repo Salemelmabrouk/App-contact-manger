@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs';
 import { ContactService } from '../contact.service';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { PopupComponent } from '../popup/popup.component';
+
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { contact } from 'src/app/contact';
@@ -36,16 +36,7 @@ closeDialog: any;
   constructor(public dialogRef: MatDialogRef<UpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,  private contactService: ContactService,private dialog: MatDialog, private fb: FormBuilder) { }
   ngOnInit(): void {
-  /*   this.updateForm = this.fb.group({
-      id: [this.data.id || ''],
-       user_Name: [this.data.user_Name || ''],
-       email:[this.data.email|| '',],
-       password: [this.data.password ||''],
-
-       phone:[this.data.phone||''],
-       gender:[this.data.gender ||''],
-     }); */
-   
+ 
 
      this.updateForm = this.fb.group({
       id: [this.data.id || ''],
@@ -53,7 +44,7 @@ closeDialog: any;
       email: [this.data.email || '', [Validators.required, Validators.email]],
       password: [this.data.password || '', Validators.minLength(8)],
       phone: [this.data.phone || ''],
-      gender: [this.data.gender || ''],
+      gender: [this.data.gender || '',Validators.required],
 
       
      
@@ -68,8 +59,7 @@ public update(data:any): void {
   this.contactService.update(data.id, this.updateForm.value).subscribe(res => {
     this.isSubmitted = true;
     this.data = res;
-    console.log(this.data);
-    console.log('User Registered successfully!!');
+
     this.closeDialog()
   
   },

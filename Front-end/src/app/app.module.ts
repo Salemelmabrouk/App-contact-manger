@@ -38,13 +38,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { TableModule } from 'primeng/table';
 import {MatSortModule} from '@angular/material/sort';
 import {NgForm} from '@angular/forms';
 import { DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule} from '@costlydeveloper/ngx-awesome-popup';
-
-
-
+import { SortDirective } from './Components/contactlist/sort.directive'
 
 import {
   ConfirmBoxInitializer,
@@ -75,11 +73,11 @@ import { HomeComponent } from './Components/shared/home/home.component';
         DeleteComponent,
         ViewComponent,
         MatchPasswordDirective,
-        HomeComponent,
+        HomeComponent,SortDirective,
         
    
   ],
-  imports: [MatTableModule,DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule,MatDialogModule,
+  imports: [MatTableModule,DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule,MatDialogModule,TableModule,
     BrowserModule,MatFormFieldModule,MatIconModule,MatToolbarModule,MatCardModule,MatInputModule,MatSliderModule,MatTableModule,MatSortModule,NgConfirmModule,
     AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule,MatButtonModule,MatButtonToggleModule,MatChipsModule,MatCommonModule,MatDialogModule,
      BrowserAnimationsModule,MatCheckboxModule,FlexLayoutModule,MatStepperModule,MatBadgeModule,MatBottomSheetModule,MatTabsModule,MatPaginatorModule,MatRadioModule,FormsModule,

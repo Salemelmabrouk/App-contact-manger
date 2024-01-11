@@ -76,30 +76,14 @@
 
 
 
-<!--  
- <div disabled  class="form-group">
-
-  <div disabled class="form-group" style="margin-left: 55px;" >
-   <label> Gender : </label><br>
-     <label class="radio-inline">
-     <input readonly type="radio" name="gender" value="male"  formControlName="gender"  [(ngModel)]="data.gender">
-     Male
-     </label>
-     <label class="radio-inline">
-     <input   type="radio"  formControlName="gender"  value="female"   [(ngModel)]="data.gender">
-     Female
-     </label>
-   </div>
- </div> -->
 
 
- <label> Gender : </label><br>
- <mat-radio-group disabled style="margin-left: 60px;">
-  <mat-radio-button  formControlName="gender"  [(ngModel)]="data.gender">Male</mat-radio-button>
-  <mat-radio-button formControlName="gender"  [(ngModel)]="data.gender">Female</mat-radio-button>
+ <label style="margin-left: 60px;"> Gender : </label><br>
+ <mat-radio-group  style="margin-left: 60px;" formControlName="gender">
+  <mat-radio-button formControlName="gender"  [disabled]="true"  [(ngModel)]="updateForm.controls['gender']"  value="Male">Male</mat-radio-button>
+  <mat-radio-button formControlName="gender"  [disabled]="true"[(ngModel)]="updateForm.controls['gender']" value="Female" >Female</mat-radio-button>
  
 </mat-radio-group>
-
  <!-- Repeat similar blocks for other form controls -->
 
  <button type="submit" (click)="onNoClick()" style="width: 65%;height: 35px;border: none;outline: none;margin-left: 60px;font-size: 18px;background: #222;color: #f5f5f5;border-radius: 6px;cursor: pointer;">Ok</button>

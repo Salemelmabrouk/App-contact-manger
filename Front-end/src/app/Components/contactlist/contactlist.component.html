@@ -1,103 +1,327 @@
-<br><br>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div style="padding-left: 50px;"><h2>Contact List</h2></div>
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+    <head>
+       
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Tailwind CSS Starter Component - Responsive Table : Tailwind Toolbox</title>
+        <meta name="description" content="Simple Tailwind CSS Responsive Table (using DataTables.net)">
+        <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter component, component, table, responsive table, datatables">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+        <link rel="manifest" href="../site.webmanifest">
+        <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="theme-color" content="#3b7977">
+        <!-- Primary Meta Tags -->
+        <title>Tailwind Toolbox - Free Starter Templates and Components for Tailwind CSS</title>
+        <meta name="title" content="Tailwind Toolbox - Free Starter Templates and Components for Tailwind CSS">
+        <meta name="description" content="Free open source Tailwind CSS starter Templates and Components to get you started quickly to creating websites in Tailwind CSS!">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.tailwindtoolbox.com/">
+        <meta property="og:title" content="Tailwind Toolbox - Free Starter Templates and Components for Tailwind CSS">
+        <meta property="og:description" content="Free open source Tailwind CSS starter Templates and Components to get you started quickly to creating websites in Tailwind CSS!">
+        <meta property="og:image" content="https://www.tailwindtoolbox.com/social.png">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://www.tailwindtoolbox.com/">
+        <meta property="twitter:title" content="Tailwind Toolbox - Free Starter Templates and Components for Tailwind CSS">
+        <meta property="twitter:description" content="Free open source Tailwind CSS starter Templates and Components to get you started quickly to creating websites in Tailwind CSS!">
+        <meta property="twitter:image" content="https://www.tailwindtoolbox.com/social.png">
+        <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
+        <!--Replace with your tailwind.css once created-->
+        <!--Regular Datatables CSS-->
+        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+        <!--Responsive Extension Datatables CSS-->
+        <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+        <style>
 
-	<mat-card style="width: 90%; margin: 60px;">
+:root {
+    --dt-row-selected: 13, 110, 253;
+    --dt-row-selected-text: 255, 255, 255;
+    --dt-row-selected-link: 9, 10, 11;
+    --dt-row-stripe: 0, 0, 0;
+    --dt-row-hover: 0, 0, 0;
+    --dt-column-ordering: 0, 0, 0;
+    --dt-html-background: white;
+}
+
+:root.dark {
+    --dt-html-background: rgb(33, 37, 41);
+    /* Add other dark mode styles if needed */
+}
+            /*Overrides for Tailwind CSS */
+            /*Form fields*/
+            .dataTables_wrapper select, .dataTables_wrapper .dataTables_filter input {
+                color: #4a5568;
+                /*text-gray-700*/
+                padding-left: 1rem;
+                /*pl-4*/
+                padding-right: 1rem;
+                /*pl-4*/
+                padding-top: .5rem;
+                /*pl-2*/
+                padding-bottom: .5rem;
+                /*pl-2*/
+                line-height: 1.25;
+                /*leading-tight*/
+                border-width: 2px;
+                /*border-2*/
+                border-radius: .25rem;
+                border-color: #edf2f7;
+                /*border-gray-200*/
+                background-color: #edf2f7;
+                /*bg-gray-200*/
+            }
+
+            /*Row Hover*/
+          /*   .table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+                background-color: #ebf4ff;
+              
+            } */
+
+			table.dataTable tbody tr:hover {
+    background-color: #ebf4ff; /* Optional: Set the background color on hover */
+    cursor: pointer;
+}
+
+table.dataTable tbody tr {
+    height: 10px; 
+    line-height: 1.5; /* Set the desired line height */
+    padding: 8px;
+}
+
+            /*Pagination Buttons*/
+            .dataTables_wrapper .dataTables_paginate .paginate_button {
+                font-weight: 700;
+                /*font-bold*/
+                border-radius: .25rem;
+                /*rounded*/
+                border: 1px solid transparent;
+                /*border border-transparent*/
+            }
+
+            /*Pagination Buttons - Current selected */
+            .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+                color: #fff !important;
+                /*text-white*/
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+                /*shadow*/
+                font-weight: 700;
+                /*font-bold*/
+                border-radius: .25rem;
+                /*rounded*/
+                background: #667eea !important;
+                /*bg-indigo-500*/
+                border: 1px solid transparent;
+                /*border border-transparent*/
+            }
+			mat-table .mat-row {
+        height: 15px !important;
+      }
+
+      .custom-row {
+        height: 18px;
+      }
+
+      .action-buttons {
+        display: flex;  
+        align-items: center;
+     
+		vertical-align:baseline;
 		
+      }
+
+      .action-button {
+    
+        transform: scale(0.7);
+
+      }
+            /*Pagination Buttons - Hover */
+            .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+                color: #fff !important;
+                /*text-white*/
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+                /*shadow*/
+                font-weight: 700;
+                /*font-bold*/
+                border-radius: .25rem;
+                /*rounded*/
+                background: #667eea !important;
+                /*bg-indigo-500*/
+                border: 1px solid transparent;
+                /*border border-transparent*/
+            }
+         
+			table.dataTable tbody tr {
+    line-height: 8px; /* Adjust this value to set the desired row height */
+}
+
+            /*Add padding to bottom border */
+            table.dataTable.no-footer {
+                border-bottom: 1px solid #e2e8f0;
+                /*border-b-1 border-gray-300*/
+                margin-top: 0.75em;
+                margin-bottom: 0.75em;
+            }
+	
+
+			.mat-table  {
+    background-color: #0951a8; /* Change this color to your desired background color */
+    color: #000000; /* Change this color to your desired text color */
+}
+
+			table.dataTable.custom-table {
+    width: 100%; /* Set your desired width here */
+    margin: auto; /* Center the table on the page */
+}
+
+            /*Change colour of responsive icon*/
+            table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+                background-color: #667eea !important;
+                /*bg-indigo-500*/
+            }
+
+
+			.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    vertical-align: baseline;
+  }
+
+  .action-button {
+    transform: scale(0.7);
+    margin: 0 5px; /* Adjust the margin as needed to provide space between buttons */
+  }
+
+  .custom-search-input {
+    margin-left: 0; /* Adjust the margin-left as needed */
+    padding: 0.5rem; /* Adjust the padding as needed */
+    border-radius: 0.25rem; /* Adjust the border-radius as needed */
+    border: 1px solid #edf2f7; /* Adjust the border color as needed */
+    background-color: #edf2f7; /* Adjust the background color as needed */
+  }
+
+  .mat-cell {
+    padding-top: 3px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mat-header-cell {
+    background-color: chartreuse;
+    height: 30px; /* Set your desired height */
+  }
+
+  th {
+    background-color: #ebf4ff !important;
+    /* Set your desired background color for the header row */
+    color: rgb(129, 84, 84);
+    /* Set your desired text color for the header row */
+    font-weight: 300;
+    font: bolder;
+    max-height: 1%;
+    font-family: Verdana;
+  }
+        </style>
+
+
+    </head>
+    <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal" style="padding-bottom: 100px;">
+		<!-- Container -->
+		<div class="container w-full md:w-4/5 xl:w-4/5  mx-auto px-2">
+			<!-- Title -->
+			<h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
+				Responsive <a class="underline mx-2" href="https://datatables.net/">DataTables.net</a>
+				Table
+			</h1>
+			<!-- Card -->
+			<div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+        
+
 		
-							<mat-card-header >
-
-								
-								<!-- <form>
-									<input matInput (keyup)= "Filterchange($event)" type="search" placeholder="Search...">
-								
-								  </form> -->
-								
-								 <!-- <mat-form-field class="example-form-field" appearance="outline">
-									<input matInput type="text" placeholder="Clearable input" [(ngModel)]="value">
-									<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-									  <mat-icon>close</mat-icon>
-									</button>
-								  </mat-form-field>*/-->
-
-
-								  <div class="input-container">
-									<input [(ngModel)]="inputValue" class="clearable-input"  (keyup)= "Filterchange($event)" type="search" placeholder="Search...">
-									<button *ngIf="inputValue" (click)="clearInput()" class="clear-button">
-										<i class="fa fa-times-circle" aria-hidden="true"></i>
-									</button>
-								  </div>
-								
-
+			 
+		<div style="display: flex; align-items: center;">
+			<button type="button" class="btn btn-success btn-xs" style="size: 10px; transform: scale(0.8);"  (click)="openaddForm()" >Add <span class="glyphicon glyphicon-plus" ></span></button>
+			<label style="margin-left: 650px;">Search:</label>
+			<input matInput type="search" (keyup)="Filterchange($event)" class="form-control form-control-sm custom-search-input" placeholder="" aria-controls="example">
+		  </div>
+                <mat-table class="table table-borderless"  [dataSource]="dataSource" matSort style="align-items: flex-start; text-align:center" >
+                            
 							
-								<!-- <button mat-raised-button color="primary" (click)="openaddForm()" class="bbb"><mat-icon>add</mat-icon></button> -->
-								 <div class="col-sm-2" style="margin-left: 600px;">
-									<a class="btn btn-success" (click)="openaddForm()"> <i class="material-icons" style="padding-bottom: 8px;  "
-									
-								>&#xE147;</i> <span>Add New Contact</span></a> 
-								
-									</div>
-							
-									<!-- <button mat-fab color="primary" style=" transform: scale(0.75); float: right;
-									margin-left: 850px;" (click)="openaddForm()"> <mat-icon>add </mat-icon></button>  -->
-
-								
-								 
-								
-							</mat-card-header>
-							<br>
-							
-							<mat-card-content style="width: 100%; overflow: auto; " class="mat-elevation-z8">
-								<mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8 table-bordered ">
-							
-									<ng-container matColumnDef="id" style="flex: 1;" >
-										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1;">id</th>
+									<ng-container matColumnDef="id"  >
+										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1; height: 5%;" class="text-decoration-underline">id</th>
 										<td mat-cell *matCellDef="let element" style="flex: 1;">{{element.id}}</td>
 									  </ng-container>
 						  
-									  <ng-container class="ngc" matColumnDef="user_Name" style="flex: 1;">
-										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1;">Name</th>
-										<td mat-cell *matCellDef="let element" style="flex: 1;">{{element.user_Name}}</td>
+									  <ng-container class="ngc" matColumnDef="user_Name" >
+										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1; height: 5%;">Name</th>
+										<td mat-cell *matCellDef="let element" >{{element.user_Name}}</td>
 									  </ng-container>
 						  
-									  <ng-container matColumnDef="email" style="flex: 1;">
-										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1;">email</th>
-										<td mat-cell *matCellDef="let element" style="flex: 1;">{{element.email}}</td>
+									  <ng-container matColumnDef="email">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1; height: 5%;">email</th>
+										<td mat-cell *matCellDef="let element" >{{element.email}}</td>
 									  </ng-container>
 						  
-									  <ng-container matColumnDef="password" style="flex: 1;">
-										<th mat-header-cell *matHeaderCellDef  type="password" mat-sort-header style="flex: 1;">password</th>
-										<td mat-cell *matCellDef="let element"  type="password"  style="flex: 1; ">***********</td>
+									  <ng-container matColumnDef="password">
+										<th mat-header-cell *matHeaderCellDef  type="password" mat-sort-header style="flex: 1; height: 5%;">password</th>
+										<td mat-cell *matCellDef="let element"  type="password"  style="flex: 1; ">{{element.password}}</td>
 									  </ng-container>
 						  
-						  <ng-container matColumnDef="phone" style="width: 100%;">
+						  <ng-container matColumnDef="phone" style="width: 150%;">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>phone</th>
 							<td mat-cell *matCellDef= "let element">{{element.phone}}</td>
 						  </ng-container>
 						  
 						  <ng-container matColumnDef="gender" style="width: 100%;">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> gender</th>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1; height: 5%;"> gender</th>
 							<td mat-cell *matCellDef= "let element">{{ element.gender}}</td>
 
 						  </ng-container>
 						  
 
-						  <ng-container matColumnDef="action" style="width: 80%;">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-							<td mat-cell *matCellDef= "let element" style="height: 15px;" >
-								<div class="mat-dialog-actions" class="box">
-									<!-- Button to open the dialog for deletion -->
-									<button  mat-button (click)="delete(element.id)" color="warn" ><span class="material-icons">delete</span></button>
-									<!-- Button to open the dialog for updating -->
-									<button mat-icon-button color="primary" (click)="update(element)">
-										<mat-icon>edit</mat-icon>
-									  </button>
-									  <button mat-icon-button color="#FFC107" (click)="view(element)">
-										<span class="material-icons">visibility</span>
-									  </button>
+						  <ng-container matColumnDef="action" style=" position:relative; text-align: center;"   >
+							<th mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1; height: 5%;">Action</th>
+							<td mat-cell *matCellDef= "let element"  class="action-buttons">
+								<div class="mat-dialog-actions">
 
-									  
-
+									
+									<td>
+										 
+										
+										  <button  (click)="delete(element.id)" ><i class="fa fa-trash-o" style="font-size:20px;color:red;  
+											align-items: center;
+										 
+											vertical-align:bottom;
+											 "></i></button>
+											
+											 
+											<button mat-icon-button color="primary" (click)="update(element)"  style="transform: scale(0.7);">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+													<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+													<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+												  </svg>
+											  </button>
+											  <button mat-icon-button color="#e0aa07" (click)="view(element)"  style="transform: scale(0.7); padding: 0px;">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="0" y="0" width="24" height="24" fill="none" stroke="none" /><path fill="#e0aa07" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+											  </button>
+		
+											  
+		
+											
+									
+									 
+										  
+									
+                 
+                 
+    
 									
 							
 								
@@ -112,12 +336,12 @@
 						  <tr mat-row class="mat-row" *matRowDef="let row; columns: displayedColumns"> </tr>
 						  
 						</mat-table>
-						</mat-card-content>
-						<mat-card-footer>  <mat-paginator [pageSizeOptions]="[ 12, 30,50]" showFirstLastButtons></mat-paginator>
-						</mat-card-footer>
-
-
-						
-
-					</mat-card>
-
+	
+            
+                
+			</div>
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons ></mat-paginator>
+		</div>
+		
+	</body>
+	</html>
